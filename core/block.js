@@ -495,6 +495,8 @@ Blockly.Block.prototype.setParent = function(newParent) {
   this.parentBlock_ = newParent;
   if (newParent) {
     // Add this block to the new parent's child list.
+    Blockly.Events.fire(new Blockly.Events.BlockChange(
+        newParent, 'childBlocks', null, this.inputsInline, newBoolean));
     newParent.childBlocks_.push(this);
   } else {
     this.workspace.addTopBlock(this);
